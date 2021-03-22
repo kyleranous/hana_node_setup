@@ -12,19 +12,21 @@ else
 
         #------------------------ UPDATE HOSTNAME --------------------
         # Create Back Up of /etc/hostname and /etc/hosts
-        cp hostname .hostname
-        cp hosts .hosts
+        cp /etc/hostname /etc/.hostname
+        cp /etc/hosts /etc/.hosts
 
         echo "Updating /etc/hostname and /etc/hosts with new name: "$2
         # Need to update this to correct filename
         sudo sed -i "s/$(hostname)/$2/" /etc/hostname /etc/hosts
 
         #------------------ UPDATE AND UPGRADE SYSTEM ----------------
-        sudo apt update
-        sudo apt upgrade -y
+        echo "Checking for updates....."
+        sudo apt-get update > /dev/null #> /dev/null to hide standard output
+        echo "Applying Updates"
+        sudo apt-get upgrade -y > /dev/null #> /dev/null to hide standard output
 
         #---------------- INSTALL DOCKER -----------------------------
-
+        
 
         #---------------- ADD CURRENT USER TO DOCKER GROUP -----------
 
