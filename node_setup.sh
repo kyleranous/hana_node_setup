@@ -1,5 +1,9 @@
 #~/bin/bash
 
+if [ $(id -u) -ne 0 ]; then
+    echo "Please run script as root"
+    exit
+fi
 if [ "$#" != "2" ]; then
         echo "Missing Arguments:"
         echo "First Argument: -w or --worker for worker node, -m or --manager for manager node"
@@ -26,10 +30,12 @@ else
         sudo apt-get upgrade -y > /dev/null #> /dev/null to hide standard output
 
         #---------------- INSTALL DOCKER -----------------------------
-        
+        echo "Downloading and Installing docker"
+        curl -ssl https://get.docker.com | sh
 
         #---------------- ADD CURRENT USER TO DOCKER GROUP -----------
-
+        echo "Adding user: $SUDO_USER to group: docker"
+        sudo usermod -aG docker $SUDO_USER
 
         #---------------AUTOSTART DOCKER SERVICES --------------------
 
