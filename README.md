@@ -1,5 +1,5 @@
 # HANA Node Setup Script
-<B>NOTE! Script is not yet ready to run. If you pull this script now, make sure you go through it and update the script as needed!</b>
+<B>NOTE! Script is not yet ready to run and has not been fully tested. If you pull this script now, make sure you go through it and update the script as needed!</b>
 
 
 This is the setup script for the HANA swarm created as part of [this](https://kranous.com/projects/home-automation/) tutorial. 
